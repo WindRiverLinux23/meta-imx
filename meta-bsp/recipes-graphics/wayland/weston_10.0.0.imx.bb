@@ -18,6 +18,7 @@ SRC_URI = "https://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
            file://weston.desktop \
            file://xwayland.weston-start \
            file://systemd-notify.weston-start \
+           file://0001-Revert-protocol-no-found-wayland-scanner-with-Yocto-.patch \
            "
 
 SRC_URI:append:libc-musl = " file://dont-use-plane-add-prop.patch "
