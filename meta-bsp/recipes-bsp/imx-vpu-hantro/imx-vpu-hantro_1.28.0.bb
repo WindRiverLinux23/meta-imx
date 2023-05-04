@@ -14,6 +14,8 @@ inherit fsl-eula-unpack use-imx-headers
 
 PARALLEL_MAKE="-j 1"
 
+DEPENDS += "linux-imx-headers"
+
 PLATFORM:mx8mm-nxp-bsp = "IMX8MM"
 PLATFORM:mx8mq-nxp-bsp = "IMX8MQ"
 PLATFORM:mx8mp-nxp-bsp = "IMX8MP"
