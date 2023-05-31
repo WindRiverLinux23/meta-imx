@@ -28,4 +28,4 @@ PACKAGES = "${PN}"
 FILES:${PN} += "${datadir}/pkgconfig/wayland-protocols.pc"
 
 PACKAGE_ARCH = "${MACHINE_SOCARCH}"
-COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx8-nxp-bsp)"
+COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx8-nxp-bsp|mx6q-nxp-bsp|mx6sx-nxp-bsp)"
