@@ -207,6 +207,6 @@ EXTRA_OEMESON += "-Ddeprecated-wl-shell=true"
 LDFLAGS:append:imxgpu:libc-musl = " -Wl,--allow-shlib-undefined"
 
 PACKAGE_ARCH = "${MACHINE_SOCARCH}"
-COMPATIBLE_MACHINE = "(imx-nxp-bsp)"
+COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx6q-nxp-bsp|mx6sx-nxp-bsp)"
 
 ########### End of i.MX overrides #########

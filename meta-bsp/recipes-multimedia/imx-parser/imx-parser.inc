@@ -38,4 +38,4 @@ FILES:${PN} += "${libdir}/imx-mm/*/*${SOLIBS} ${libdir}/imx-mm/*/*${SOLIBSDEV}"
 
 INHIBIT_SYSROOT_STRIP = "1"
 
-COMPATIBLE_MACHINE = "(imx-nxp-bsp)"
+COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx6q-nxp-bsp|mx6sx-nxp-bsp)"
