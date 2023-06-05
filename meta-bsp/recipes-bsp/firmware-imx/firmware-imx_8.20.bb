@@ -155,4 +155,4 @@ FILES:${PN}-hdmi = " \
     ${nonarch_base_libdir}/firmware/dpfw.bin \
 "
 
-COMPATIBLE_MACHINE = "(imx-generic-bsp)"
+COMPATIBLE_MACHINE = "(imx-generic-bsp|mx8-generic-bsp)"
