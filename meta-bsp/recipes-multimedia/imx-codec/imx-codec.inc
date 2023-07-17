@@ -112,4 +112,4 @@ FILES:${PN}-nb += "${libdir}/imx-mm/audio-codec/wrap/lib_nbamrd_wrap_arm*_elinux
 FILES:${PN}-wb += "${libdir}/imx-mm/audio-codec/wrap/lib_wbamrd_wrap_arm*_elinux.so.*"
 
 PACKAGE_ARCH = "${MACHINE_SOCARCH}"
-COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx6q-nxp-bsp|mx6sx-nxp-bsp)"
+COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx6q-nxp-bsp|mx6sx-nxp-bsp|mx8-nxp-bsp)"
