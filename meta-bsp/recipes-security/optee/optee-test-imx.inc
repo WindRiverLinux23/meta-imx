@@ -12,4 +12,12 @@ EXTRA_OEMAKE:append:libc-musl = " OPTEE_OPENSSL_EXPORT=${STAGING_INCDIR}"
 DEPENDS:append:libc-musl = " openssl"
 CFLAGS:append:libc-musl = " -Wno-error=deprecated-declarations"
 
-COMPATIBLE_MACHINE = "(imx-nxp-bsp)"
+do_install:append () {
+    mkdir -p ${D}${nonarch_libdir}/tee-supplicant/plugins
+    install -D -p -m0444 ${B}/supp_plugin/*.plugin ${D}${nonarch_libdir}/tee-supplicant/plugins/
+}
+
+FILES:${PN} += " ${nonarch_libdir}/tee-supplicant/plugins/ \
+               "
+
+COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx8-nxp-bsp)"

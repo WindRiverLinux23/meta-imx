@@ -43,4 +43,4 @@ EXTRA_OEMAKE:append = " \
     CFG_TEE_CORE_LOG_LEVEL=0 \
 "
 
-COMPATIBLE_MACHINE = "(imx-nxp-bsp)"
+COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx8-nxp-bsp)"
