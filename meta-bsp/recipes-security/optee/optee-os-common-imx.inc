@@ -55,4 +55,4 @@ EXTRA_OEMAKE:append:imx8dxlb0-fips-lpddr4-evk = " \
     CFG_NXP_CAAM=n \
 "
 
-COMPATIBLE_MACHINE = "(imx-nxp-bsp)"
+COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx8-nxp-bsp)"
