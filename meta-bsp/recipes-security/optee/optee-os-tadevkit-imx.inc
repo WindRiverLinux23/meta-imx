@@ -6,11 +6,19 @@ HOMEPAGE = "https://www.op-tee.org/"
 
 DEPENDS += "python3-pycryptodome-native"
 
+do_compile:aarch64() {
+    for plat in ${OPTEEOS_CONFIG}; do
+        oe_runmake -C ${S} PLATFORM=$plat O=${B}/$plat all
+    done
+}
+
 do_install() {
     #install TA devkit
     install -d ${D}${includedir}/optee/export-user_ta/
-    for f in ${B}/export-ta_${OPTEE_ARCH}/* ; do
-        cp -aR $f ${D}${includedir}/optee/export-user_ta/
+    for plat in ${OPTEEOS_CONFIG}; do
+        for f in ${B}/$plat/export-ta_${OPTEE_ARCH}/* ; do
+            cp -aR $f ${D}${includedir}/optee/export-user_ta/
+        done
     done
 }
 
