@@ -4,6 +4,8 @@ DEPENDS = "zlib-native openssl-native"
 
 SRC_URI = "${IMX_MKIMAGE_SRC};branch=${SRCBRANCH} \
            file://0001-iMX8M-soc.mak-use-native-mkimage-from-sysroot.patch \
+           file://0001-LFU-573-1-imx8m-Generate-hash-of-FIT-FDT-structure-t.patch \
+           file://0002-LFU-573-2-imx8m-Reserve-new-IVT-CSF-for-FIT-FDT-sign.patch \
 "
 IMX_MKIMAGE_SRC ?= "git://github.com/nxp-imx/imx-mkimage.git;protocol=https"
 SRCBRANCH = "lf-6.1.22_2.0.0"
