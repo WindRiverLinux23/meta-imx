@@ -1,0 +1,37 @@
+From 93aa87f9f34ac81518bea639f55d9d1341dccc53 Mon Sep 17 00:00:00 2001
+From: Ji Luo <ji.luo@nxp.com>
+Date: Thu, 24 Aug 2023 16:17:09 +0800
+Subject: [PATCH 3/4] MA-21597 check spl fit pointer before parsing it
+
+commit 6cb283bb4e19da6667abaedd83efc23a15fdc48d from
+https://github.com/nxp-imx/uboot-imx.git
+
+the spl fit pointer could be set as NULL in HAB verify
+failed case, return error in such case.
+
+Upstream-Status: Backport
+
+Change-Id: Idb44a19ca89f2a6065ea423782441e57109d6e3a
+Signed-off-by: Ji Luo <ji.luo@nxp.com>
+Signed-off-by: Meng Li <Meng.Li@windriver.com>
+---
+ common/spl/spl_fit.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/common/spl/spl_fit.c b/common/spl/spl_fit.c
+index 9aaa160524..2e36bcfc09 100644
+--- a/common/spl/spl_fit.c
++++ b/common/spl/spl_fit.c
+@@ -737,6 +737,9 @@ int spl_load_simple_fit(struct spl_image_info *spl_image,
+ 		return 0;
+ 
+ 	ctx.fit = spl_load_simple_fit_fix_load(ctx.fit);
++	if (ctx.fit == NULL) {
++		return -1;
++	}
+ 
+ 	ret = spl_simple_fit_parse(&ctx);
+ 	if (ret < 0)
+-- 
+2.34.1
+
