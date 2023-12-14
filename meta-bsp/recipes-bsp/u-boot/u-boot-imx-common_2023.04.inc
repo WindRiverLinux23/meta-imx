@@ -9,6 +9,7 @@ SRC_URI = "${UBOOT_SRC};branch=${SRCBRANCH} \
            file://0002-LFU-573-2-imx8m-hab-Verify-optional-FIT-FDT-signatur.patch \
            file://0003-MA-21597-check-spl-fit-pointer-before-parsing-it.patch \
            file://0004-LFU-573-3-doc-imx8m-Update-iMX8M-secure-boot-and-enc.patch \
+           file://efi.cfg \
 "
 SRCBRANCH = "lf_v2023.04"
 LOCALVERSION ?= "-${SRCBRANCH}"
