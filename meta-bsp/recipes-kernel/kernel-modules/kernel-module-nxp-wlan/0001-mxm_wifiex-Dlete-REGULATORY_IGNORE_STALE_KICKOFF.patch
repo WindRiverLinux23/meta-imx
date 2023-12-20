@@ -1,0 +1,37 @@
+From c0810c89b3340bafa029bd652d69b4626172fab6 Mon Sep 17 00:00:00 2001
+From: Xiaolei Wang <xiaolei.wang@windriver.com>
+Date: Tue, 19 Dec 2023 16:02:11 +0800
+Subject: [PATCH] mxm_wifiex: Delete REGULATORY_IGNORE_STALE_KICKOFF
+
+This configuration has been deleted by kernel commit e8c2af660ba0,
+so remove it
+
+Upstream-Status: Pending
+
+Signed-off-by: Xiaolei Wang <xiaolei.wang@windriver.com>
+---
+ mxm_wifiex/wlan_src/mlinux/moal_sta_cfg80211.c | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/mxm_wifiex/wlan_src/mlinux/moal_sta_cfg80211.c b/mxm_wifiex/wlan_src/mlinux/moal_sta_cfg80211.c
+index bf39f0e..710c99d 100644
+--- a/mxm_wifiex/wlan_src/mlinux/moal_sta_cfg80211.c
++++ b/mxm_wifiex/wlan_src/mlinux/moal_sta_cfg80211.c
+@@ -10357,14 +10357,6 @@ mlan_status woal_register_cfg80211(moal_private *priv)
+ 		PRINTM(MIOCTL, "Follow countryIE provided by AP.\n");
+ 	}
+ #endif
+-#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 19, 0)
+-	/*REGULATORY_IGNORE_STALE_KICKOFF: the regulatory core will _not_ make
+-	 * sure all interfaces on this wiphy reside on allowed channels. If this
+-	 * flag is not set, upon a regdomain change, the interfaces are given a
+-	 * grace period (currently 60 seconds) to disconnect or move to an
+-	 * allowed channel.*/
+-	wiphy->regulatory_flags |= REGULATORY_IGNORE_STALE_KICKOFF;
+-#endif
+ 
+ 	memset(&priv->phandle->country_code, 0,
+ 	       sizeof(priv->phandle->country_code));
+-- 
+2.25.1
+
