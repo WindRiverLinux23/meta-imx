@@ -19,4 +19,4 @@ DEBUG_PREFIX_MAP:prepend = " \
     -fmacro-prefix-map=${WORKDIR}/git/vvcam=/usr/src/debug/${PN}/${EXTENDPE}${PV}-${PR} \
     -fdebug-prefix-map=${WORKDIR}/git/vvcam=/usr/src/debug/${PN}/${EXTENDPE}${PV}-${PR} "
 
-COMPATIBLE_MACHINE = "(mx8mp-nxp-bsp)"
+COMPATIBLE_MACHINE = "(mx8-nxp-bsp)"
