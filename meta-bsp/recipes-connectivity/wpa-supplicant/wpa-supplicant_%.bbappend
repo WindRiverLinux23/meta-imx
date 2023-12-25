@@ -1,9 +1,9 @@
 FILESEXTRAPATHS:prepend:mx8-nxp-bsp := "${THISDIR}/${PN}:"
 
-DEPENDS += "readline"
+DEPENDS:append:mx8-nxp-bsp = " readline"
 
 # Add defconfig for NXP Wi-Fi version
-SRC_URI:mx8-nxp-bsp += "file://defconfig"
+SRC_URI:append:mx8-nxp-bsp = " file://defconfig"
 
 PACKAGECONFIG:append:mx8-nxp-bsp := " openssl"
 
