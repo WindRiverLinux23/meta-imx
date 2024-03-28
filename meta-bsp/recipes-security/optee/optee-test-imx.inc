@@ -20,4 +20,4 @@ do_install:append () {
 FILES:${PN} += " ${nonarch_libdir}/tee-supplicant/plugins/ \
                "
 
-COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx8-nxp-bsp)"
+COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx8-nxp-bsp|mx93-nxp-bsp)"

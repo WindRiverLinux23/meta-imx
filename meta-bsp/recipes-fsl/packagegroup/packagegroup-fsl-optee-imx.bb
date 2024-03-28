@@ -10,4 +10,4 @@ inherit packagegroup
 
 RDEPENDS:${PN} += "optee-client optee-os optee-test"
 
-COMPATIBLE_MACHINE = "(mx8-nxp-bsp)"
+COMPATIBLE_MACHINE = "(mx8-nxp-bsp|mx93-nxp-bsp)"
