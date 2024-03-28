@@ -12,4 +12,4 @@ OPTEE_TEST_SRC ?= "git://github.com/nxp-imx/imx-optee-test.git;protocol=https"
 EXTRA_OEMAKE:append:libc-musl = " OPTEE_OPENSSL_EXPORT=${STAGING_INCDIR}"
 CFLAGS:append:libc-musl = " -Wno-error=deprecated-declarations"
 
-COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx8-nxp-bsp)"
+COMPATIBLE_MACHINE = "(imx-nxp-bsp|mx8-nxp-bsp|mx93-nxp-bsp)"
