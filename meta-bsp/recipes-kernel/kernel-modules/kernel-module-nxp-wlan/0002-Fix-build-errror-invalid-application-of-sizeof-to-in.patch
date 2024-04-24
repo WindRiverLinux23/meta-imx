@@ -1,0 +1,40 @@
+From ffe0bc349c685178b2ed214cb19c942bd7f61c7b Mon Sep 17 00:00:00 2001
+From: Xiaolei Wang <xwang8@ala-lpggp3.wrs.com>
+Date: Tue, 23 Apr 2024 20:26:18 -0700
+Subject: [PATCH] meta-imx: meta-bsp: Fix the incorrect kernel version
+check in the wlan driver
+
+To accommodate the changes introduced by commit fd84a5fae03c ("et: dev:
+Convert sa_data to flexible array in struct sockaddr"), the code checks
+the kernel version to determine whether the commit has been applied.
+However, the kernel version used for this check is incorrect. It should
+be v6.1 instead of v6.2. Since we are unlikely to support this driver
+on versions lower than v6.1, we can remove the checks for the kernel
+version altogether.
+
+Upstream-Status: Pending
+
+Signed-off-by: Xiaolei Wang <xiaolei.wang@windriver.com>
+---
+ mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c b/mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c
+index 378701e..97a0658 100644
+--- a/mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c
++++ b/mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c
+@@ -6222,11 +6222,7 @@ static int woal_priv_get_ap(moal_private *priv, t_u8 *respbuf, t_u32 respbuflen)
+ 	if (bss_info.media_connected == MTRUE) {
+ 		moal_memcpy_ext(priv->phandle, mwr->u.ap_addr.sa_data,
+ 				&bss_info.bssid, MLAN_MAC_ADDR_LENGTH,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 2, 0)
+ 				sizeof(mwr->u.ap_addr.sa_data_min));
+-#else
+-				sizeof(mwr->u.ap_addr.sa_data));
+-#endif
+ 	} else {
+ 		memset(mwr->u.ap_addr.sa_data, 0, MLAN_MAC_ADDR_LENGTH);
+ 	}
+-- 
+2.43.0
+
