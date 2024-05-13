@@ -1,0 +1,37 @@
+From b868fe1fca83b3566b06c7eca036036daaf690fb Mon Sep 17 00:00:00 2001
+From: Xulin Sun <xulin.sun@windriver.com>
+Date: Mon, 13 May 2024 11:46:21 +0000
+Subject: [PATCH] mxm_wifiex: replace sa->sa_data with sa->sa_data_min
+
+kernel commit fd84a5fae03c0a6c (net: dev: Convert sa_data to flexible array
+in struct sockaddr) needs anything using sizeof(sa->sa_data) must switch to
+sizeof(sa->sa_data_min), otherwise the following building issue will
+occur:
+
+mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c:6228:39: error: invalid application of 'sizeof' to incomplete type 'char[]'
+|  6228 |                                 sizeof(mwr->u.ap_addr.sa_data));
+|       |                                       ^
+
+Upstream-Status: Pending
+
+Signed-off-by: Xulin Sun <xulin.sun@windriver.com>
+---
+ mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c b/mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c
+index 378701e..22666c1 100644
+--- a/mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c
++++ b/mxm_wifiex/wlan_src/mlinux/moal_eth_ioctl.c
+@@ -6222,7 +6222,7 @@ static int woal_priv_get_ap(moal_private *priv, t_u8 *respbuf, t_u32 respbuflen)
+ 	if (bss_info.media_connected == MTRUE) {
+ 		moal_memcpy_ext(priv->phandle, mwr->u.ap_addr.sa_data,
+ 				&bss_info.bssid, MLAN_MAC_ADDR_LENGTH,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 2, 0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
+ 				sizeof(mwr->u.ap_addr.sa_data_min));
+ #else
+ 				sizeof(mwr->u.ap_addr.sa_data));
+-- 
+2.35.5
+
